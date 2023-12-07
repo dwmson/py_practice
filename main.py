@@ -1,29 +1,31 @@
-# Original dictionary ##
+# Original dictionary #
 protocols_dict = {
-    'FTP':'21',
-    'DNS':'53',
-    'LDAP':'389',
-    'MySQL':'3306'
+    'FTP':['20', '21'],
+    'DNS':['53'],
+    'LDAP':['389'],
+    'MySQL':['3306']
 }
 
 # Converts original dictionary to lower case ##
 protocols_dict_lower = {key.lower(): value for key, value in protocols_dict.items()}
 
 # Creates a reverse dictionary for port number search
-ports_dict = {value: key for key, value in protocols_dict.items()}
+ports_dict = {}
+for protocol, ports in protocols_dict.items():
+    for port in ports:
+        ports_dict.setdefault(port, []).append(protocol)
 
 question = input('Enter a protocol or port number: ').lower()
 
 #Search by Protocol
 if question in protocols_dict_lower:
-    answer = protocols_dict_lower[question]
-    original_key = [key for key, value in protocols_dict.items() if value == answer][0]
-    print(f'The port number for protocol {original_key} is {answer}.')
+    answers = protocols_dict_lower[question]
+    print(f'The port number(s) for {question.upper()} Protocol: {", ".join(answers)}')
 
 # Search by port number
 elif question in ports_dict:
     protocol = ports_dict[question]
-    print(f'The protocol for port number {question} is {protocol}')
+    print(f'The protocol for port number {question} is: {", ".join(protocol)}')
 
 # Error message for port or protocol not found
 else: 
