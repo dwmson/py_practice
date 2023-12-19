@@ -29,7 +29,7 @@ cd py_practice
 ```
 
 ## License
-These projects are licensed under the MIT License - see the LICENSE.md file for details.
+These projects are licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgements 
 Special thanks to the Python community for providing invaluable resources and support.<br>
